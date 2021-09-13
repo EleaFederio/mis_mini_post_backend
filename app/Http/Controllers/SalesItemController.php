@@ -6,5 +6,9 @@ use Illuminate\Http\Request;
 
 class SalesItemController extends Controller
 {
-    //
+
+    public function store(){
+
+    }
+
 }
