@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\ProductController;
-use \App\Models\SalesItem;
+use \App\Http\Controllers\SalesItemController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,4 +24,4 @@ Route::get('product', [ProductController::class, 'index']);
 Route::post('product/add', [ProductController::class, 'store']);
 Route::get('product/search/{keyWord}', [ProductController::class, 'search']);
 
-Route::post('transaction/add', [SalesItem::class, 'store']);
+Route::post('transaction/add', [SalesItemController::class, 'store']);

@@ -9,8 +9,10 @@ class Sale extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'payment',
         'total_price',
-        'reference_number'
+        'reference_number',
+        'change'
     ];
 
     function salesItems(){
