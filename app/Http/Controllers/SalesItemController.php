@@ -17,6 +17,7 @@ class SalesItemController extends Controller
         $change = $payment - $totalPrice;
         $referenceNumber = rand(00000000, 99999999);
         $products = $request->products;
+        $quantity = $request->quantity;
         if($totalPrice > 0 && $payment > 0){
             Sale::create([
                 'total_price' => $totalPrice,
@@ -28,7 +29,8 @@ class SalesItemController extends Controller
             foreach ($products as $product){
                 SalesItem::create([
                     'product_id' => $product,
-                    'sale_id' => $lastEntry->id
+                    'sale_id' => $lastEntry->id,
+                    'quantity' => $quantity
                 ]);
             }
 

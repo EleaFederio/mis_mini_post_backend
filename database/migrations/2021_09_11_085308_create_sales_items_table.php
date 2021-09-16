@@ -17,6 +17,7 @@ class CreateSalesItemsTable extends Migration
             $table->id();
             $table->foreignId('product_id')->constrained();
             $table->foreignId('sale_id')->constrained();
+            $table->integer('quantity');
             $table->timestamps();
         });
     }
