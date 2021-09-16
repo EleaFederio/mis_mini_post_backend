@@ -16,10 +16,10 @@ class SalesItem extends Model
     ];
 
     function products(){
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(Product::class, 'product_id');
     }
 
     function sales(){
-        return $this->belongsTo(Sale::class);
+        return $this->belongsTo(Sale::class, 'sale_id');
     }
 }
