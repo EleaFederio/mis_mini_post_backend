@@ -17,7 +17,6 @@ class SalesItemController extends Controller
         $change = $payment - $totalPrice;
         $referenceNumber = rand(00000000, 99999999);
         $products = $request->products;
-        $quantity = $request->quantity;
         if($totalPrice > 0 && $payment > 0){
             Sale::create([
                 'total_price' => $totalPrice,
@@ -27,14 +26,15 @@ class SalesItemController extends Controller
             ]);
             $lastEntry = Sale::orderBy('created_at', 'desc')->first();
             foreach ($products as $product){
+//                dd($product['item']);
                 SalesItem::create([
-                    'product_id' => $product,
+                    'product_id' => $product['item'],
                     'sale_id' => $lastEntry->id,
-                    'quantity' => $quantity
+                    'quantity' => $product['quantity']
                 ]);
             }
 
-//            return $productId;
+//            return $products;
 
         }else{
             return response()->json([
