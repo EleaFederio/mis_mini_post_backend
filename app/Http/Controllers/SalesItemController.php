@@ -50,12 +50,15 @@ class SalesItemController extends Controller
         foreach ($sales as $sale){
             $subData = [];
             $saleItems = SalesItem::where('sale_id', $sale->id)->get();
+            foreach ($saleItems as $saleItem){
+                array_push($subData, $saleItem->products);
+            }
             array_push($data, [
                 'total' => $sale->total_price,
                 'payment' => $sale->payment,
                 'reference_number' => $sale->reference_number,
                 'change' => $sale->change,
-                'product' => $saleItems
+                'product' => $subData
             ]);
 //            foreach ($saleItems as $saleItem){
 //
