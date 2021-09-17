@@ -25,3 +25,4 @@ Route::post('product/add', [ProductController::class, 'store']);
 Route::get('product/search/{keyWord}', [ProductController::class, 'search']);
 
 Route::post('transaction/add', [SalesItemController::class, 'store']);
+Route::get('transactions/show', [SalesItemController::class, 'show']);
