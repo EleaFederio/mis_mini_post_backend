@@ -15,10 +15,10 @@ class CreateSalesTable extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
-            $table->decimal('total_price', 9, 3);
-            $table->decimal('payment', 9, 3);
+            $table->decimal('total_price', 9, 2);
+            $table->decimal('payment', 9, 2);
             $table->string('reference_number');
-            $table->decimal('change', 9, 3);
+            $table->decimal('change', 9, 2);
             $table->timestamps();
         });
     }

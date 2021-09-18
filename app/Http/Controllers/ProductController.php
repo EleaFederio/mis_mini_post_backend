@@ -12,6 +12,24 @@ class ProductController extends Controller
         return ProductResource::collection(Product::paginate(10));
     }
 
+    public function aaaa(Request $request){
+        $products = Product::all();
+        $data = [];
+        foreach ($products as $product){
+            $product->categories;
+            array_push($data, [
+               'name' => $product->name,
+               'description' => $product->description,
+                'price' => $product->price,
+                'category' => $product->categories
+            ]);
+        }
+        return response()->json([
+            'success' => true,
+            'data' => $data
+        ]);
+    }
+
     public function store(Request $request){
         $request->validate([
             'name' => 'required',

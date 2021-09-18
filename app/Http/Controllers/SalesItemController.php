@@ -51,7 +51,13 @@ class SalesItemController extends Controller
             $subData = [];
             $saleItems = SalesItem::where('sale_id', $sale->id)->get();
             foreach ($saleItems as $saleItem){
-                array_push($subData, $saleItem->products);
+                array_push($subData, [
+                    'name' => $saleItem->products->name,
+                    'description' => $saleItem->products->description,
+                    'price' => $saleItem->products->price,
+                    'quantity' => $saleItem->quantity,
+                    'created' => $saleItem->created_at
+                ]);
             }
             array_push($data, [
                 'total' => $sale->total_price,
@@ -60,31 +66,8 @@ class SalesItemController extends Controller
                 'change' => $sale->change,
                 'product' => $subData
             ]);
-//            foreach ($saleItems as $saleItem){
-//
-//                var_dump($saleItem->products);
-//            }
         }
         return $data;
-
-//        $salesItems = SalesItem::all();
-//        $data = [];
-//        foreach ($salesItems as $salesItem){
-//            $products = $salesItem->products;
-//            array_push($data, [
-//                'payment' => $salesItem->sales->payment,
-//                'total_price' => $salesItem->sales->total_price,
-//                'reference_number' => $salesItem->sales->reference_number,
-//                'change' => $salesItem->sales->change,
-//
-//                'quantity' => $salesItem->quantity
-//            ]);
-//        }
-//
-//        return response()->json([
-//            'success' => false,
-//            'data' => $data,
-//        ]);
     }
 
 }
