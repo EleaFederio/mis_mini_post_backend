@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Sale;
 use App\Models\SalesItem;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -56,14 +57,19 @@ class SalesItemController extends Controller
                     'description' => $saleItem->products->description,
                     'price' => $saleItem->products->price,
                     'quantity' => $saleItem->quantity,
-                    'created' => $saleItem->created_at
+                    'total' => number_format((float)$saleItem->quantity * $saleItem->products->price, 2, '.', '')
+
                 ]);
             }
             array_push($data, [
                 'total' => $sale->total_price,
+                'sub_total' => number_format((float)($sale->total_price * 0.12) + $sale->total_price, 2, '.', ''),
+                'tax' => number_format((float)$sale->total_price * 0.12, 2, '.', ''),
                 'payment' => $sale->payment,
                 'reference_number' => $sale->reference_number,
                 'change' => $sale->change,
+//                'created_at'  => $sale->created_at,
+                'created_at'  => Carbon::createFromFormat('Y-m-d H:i:s', $sale->created_at)->translatedFormat('M d, Y - h:i-A'),
                 'product' => $subData
             ]);
         }
