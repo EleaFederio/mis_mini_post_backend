@@ -4,31 +4,37 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
 
 class ProductController extends Controller
 {
     public function index(){
-        return ProductResource::collection(Product::paginate(10));
-    }
-
-    public function aaaa(Request $request){
         $products = Product::all();
         $data = [];
         foreach ($products as $product){
             $product->categories;
             array_push($data, [
-               'name' => $product->name,
-               'description' => $product->description,
+                'id' => $product->id,
+                'name' => $product->name,
+                'description' => $product->description,
                 'price' => $product->price,
-                'category' => $product->categories
+                'category' => $product->categories->category_name
             ]);
         }
-        return response()->json([
-            'success' => true,
-            'data' => $data
-        ]);
+
+        return $this->paginate($data);
     }
+
+    public function paginate($items, $perPage = 5, $page = null, $options = []){
+        $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
+        $items = $items instanceof Collection ? $items : Collection::make($items);
+        return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
+    }
+
+
 
     public function store(Request $request){
         $request->validate([
