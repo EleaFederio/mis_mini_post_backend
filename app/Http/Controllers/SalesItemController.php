@@ -62,12 +62,12 @@ class SalesItemController extends Controller
                 ]);
             }
             array_push($data, [
-                'total' => $sale->total_price,
-                'sub_total' => number_format((float)($sale->total_price * 0.12) + $sale->total_price, 2, '.', ''),
+                'total' => number_format((float)($sale->total_price * 0.12) + $sale->total_price, 2, '.', ''),
+                'sub_total' => $sale->total_price,
                 'tax' => number_format((float)$sale->total_price * 0.12, 2, '.', ''),
                 'payment' => $sale->payment,
                 'reference_number' => $sale->reference_number,
-                'change' => $sale->change,
+                'change' => number_format((float)$sale->payment - (($sale->total_price * 0.12) + $sale->total_price), 2, '.', ''),
 //                'created_at'  => $sale->created_at,
                 'created_at'  => Carbon::createFromFormat('Y-m-d H:i:s', $sale->created_at)->translatedFormat('M d, Y - h:i-A'),
                 'product' => $subData
