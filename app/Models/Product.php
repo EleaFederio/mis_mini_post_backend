@@ -12,7 +12,8 @@ class Product extends Model
         'name',
         'description',
         'price',
-        'category_id'
+        'category_id',
+        'product_img'
     ];
 
     function salesItems(){

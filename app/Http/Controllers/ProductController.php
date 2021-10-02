@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -54,16 +55,31 @@ class ProductController extends Controller
 
 
     public function store(Request $request){
+        $fileName = null;
         $request->validate([
             'name' => 'required',
             'description' => 'required',
             'price' => 'required',
             'category_id' => 'required'
         ]);
-        Product::create($request->all());
+
+        if($request->product_img != null){
+            $dataTime = date('Ymd_His');
+            $file = $request->file('product_img');
+            $fileName = $dataTime. '-'.rand(00000000, 99999999).'.jpg';
+            Storage::disk('google')->putFileAs(env('GOOGLE_DRIVE_FOLDER_ID'), $file, $fileName);
+        }
+
+        Product::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'price' => $request->price,
+            'category_id' => $request->category_id,
+            'product_img' => $fileName,
+        ]);
         return response()->json([
             'success' => true,
-            'message' => 'Product successfully added!'
+            'message' => 'product details saved to db!'
         ]);
     }
 
