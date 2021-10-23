@@ -30,3 +30,7 @@ Route::post('transaction/add', [SalesItemController::class, 'store']);
 Route::get('transactions', [SalesItemController::class, 'show']);
 
 Route::get('categories', [CategoryController::class, 'index']);
+
+
+
+Route::get('/year/sale', [ProductController::class, 'test']);
