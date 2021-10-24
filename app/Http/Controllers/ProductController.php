@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
+use App\Models\SalesItem;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -64,6 +66,35 @@ class ProductController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Product successfully added!'
+        ]);
+    }
+
+    public function test(){
+        $products = Product::all();
+        $data = [];
+
+        // Circle trough all 12 months
+        for ($month = 1; $month <= 12; $month++) {
+            // Create a Carbon object from the current year and the current month (equals 2019-01-01 00:00:00)
+            $date = Carbon::create(date('Y'), $month);
+
+            // Make a copy of the start date and move to the end of the month (e.g. 2019-01-31 23:59:59)
+            $date_end = $date->copy()->endOfMonth();
+
+            $tempTransactionCount = 0;
+            foreach ($products as $product){
+                $transaksi = SalesItem::where('product_id', $product->id)
+                    // the creation date must be between the start of the month and the end of the month
+                    ->where('created_at', '>=', $date)
+                    ->where('created_at', '<=', $date_end)
+                    ->count();
+                $tempTransactionCount = $tempTransactionCount + $transaksi;
+            }
+            $data[$month] = $tempTransactionCount;
+        }
+        return response()->json([
+            'success' => true,
+            'message' => $data
         ]);
     }
 

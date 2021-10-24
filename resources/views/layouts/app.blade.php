@@ -22,17 +22,19 @@
 </head>
 <body>
 <div>
-    <nav class="navbar navbar-dark bg-primary">
-        <div class="container-fluid">
-            <a class="navbar-brand">Cashier's Name</a>
-            <form class="d-flex">
-                <button class="btn btn-outline-danger" type="submit">LOGOUT</button>
-            </form>
-        </div>
-    </nav>
-    <div>
-        @yield('content')
-    </div>
+{{--    <nav class="navbar navbar-dark bg-primary">--}}
+{{--        <div class="container-fluid">--}}
+{{--            <a class="navbar-brand">Cashier's Name</a>--}}
+{{--            <form class="d-flex">--}}
+{{--                <button class="btn btn-outline-danger" type="submit">LOGOUT</button>--}}
+{{--            </form>--}}
+{{--        </div>--}}
+{{--    </nav>--}}
+{{--    <div>--}}
+{{--        @yield('content')--}}
+{{--    </div>--}}
+
+
 </div>
 </body>
 </html>
