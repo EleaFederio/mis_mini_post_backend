@@ -22,4 +22,8 @@ class SalesItem extends Model
     function sales(){
         return $this->belongsTo(Sale::class, 'sale_id');
     }
+
+    function branch(){
+        return $this->belongsTo(Branch::class, 'branch_id');
+    }
 }
