@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSalesItemsTable extends Migration
+class CreateBranchesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateSalesItemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('sales_items', function (Blueprint $table) {
+        Schema::create('branches', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id')->constrained();
-            $table->foreignId('sale_id')->constrained();
-            $table->foreignId('branch_id')->constrained();
-            $table->integer('quantity');
+            $table->string('branch_name');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ class CreateSalesItemsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sales_items');
+        Schema::dropIfExists('branches');
     }
 }

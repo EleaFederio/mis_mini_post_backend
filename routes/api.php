@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\ProductController;
 use \App\Http\Controllers\SalesItemController;
 use \App\Http\Controllers\CategoryController;
+use \App\Http\Controllers\BranchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,7 @@ Route::post('transaction/add', [SalesItemController::class, 'store']);
 Route::get('transactions', [SalesItemController::class, 'show']);
 
 Route::get('categories', [CategoryController::class, 'index']);
+Route::get('branches', [BranchController::class, 'index']);
 
 
 
