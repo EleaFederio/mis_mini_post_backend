@@ -26,10 +26,15 @@ class ProductController extends Controller
                 'category' => $product->categories->category_name
             ]);
         }
-
         return $this->paginate($data);
     }
 
+
+    /**
+     * This a custom pagination function
+     * @param int $perPage - How many Products per page
+     * Get Product and group then into arrays(per page)
+     */
     public function paginate($items, $perPage = 6, $page = null, $options = []){
         $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
         $items = $items instanceof Collection ? $items : Collection::make($items);
@@ -69,7 +74,7 @@ class ProductController extends Controller
         ]);
     }
 
-    public function test(){
+    public function dataWareHouse(){
         $products = Product::all();
         $data = [];
 
