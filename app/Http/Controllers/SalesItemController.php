@@ -89,9 +89,9 @@ class SalesItemController extends Controller
                 'created_at'  => Carbon::createFromFormat('Y-m-d H:i:s', $sale->created_at)->translatedFormat('M d, Y - h:i-A'),
                 'product' => $subData
             ]);
-            return $data;
+//            return $data;
         }
-//        return $data;
+        return $data;
     }
 
 }

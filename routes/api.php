@@ -35,4 +35,4 @@ Route::get('branches', [BranchController::class, 'index']);
 
 
 
-Route::get('/year/sale', [ProductController::class, 'dataWareHouse']);
+Route::get('/year/sale/{year}', [ProductController::class, 'dataWareHouse']);
