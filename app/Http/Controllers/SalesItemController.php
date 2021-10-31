@@ -36,7 +36,7 @@ class SalesItemController extends Controller
                     // save using many-to-many relationship
                     'product_id' => $product['item'],
                     'sale_id' => $lastEntry->id,
-                    'branch_id' => 2,
+                    'branch_id' =>$product['branch_id'],
                     'quantity' => $product['quantity']
                 ]);
             }
