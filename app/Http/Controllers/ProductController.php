@@ -30,6 +30,22 @@ class ProductController extends Controller
         return $this->paginate($data);
     }
 
+    public function showProducts(){
+        $products = Product::all();
+        $data = [];
+        foreach ($products as $product){
+            $product->categories;
+            array_push($data, [
+                'id' => $product->id,
+                'name' => $product->name,
+                'description' => $product->description,
+                'price' => $product->price,
+                'category' => $product->categories->category_name
+            ]);
+        }
+        return $this->paginate($data, 10);
+    }
+
 
     /**
      * This a custom pagination function
