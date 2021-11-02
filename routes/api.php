@@ -23,6 +23,7 @@ use \App\Http\Controllers\BranchController;
 //});
 
 Route::get('product', [ProductController::class, 'index']);
+Route::get('products', [ProductController::class, 'showProducts']);
 Route::get('aaa', [ProductController::class, 'aaaa']);
 Route::post('product/add', [ProductController::class, 'store']);
 Route::get('product/search/{keyWord}', [ProductController::class, 'search']);
