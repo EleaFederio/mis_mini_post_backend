@@ -23,6 +23,9 @@ use \App\Http\Controllers\BranchController;
 //});
 
 Route::get('product', [ProductController::class, 'index']);
+Route::get('product/{id}', [ProductController::class, 'view']);
+Route::put('product/update/{id}', [ProductController::class, 'update']);
+
 Route::get('products', [ProductController::class, 'showProducts']);
 Route::get('aaa', [ProductController::class, 'aaaa']);
 Route::post('product/add', [ProductController::class, 'store']);

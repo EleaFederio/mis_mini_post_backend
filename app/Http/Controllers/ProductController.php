@@ -30,6 +30,14 @@ class ProductController extends Controller
         return $this->paginate($data);
     }
 
+    public function view($id){
+        $product = Product::find($id);
+        return response()->json([
+            'success' => true,
+            'product' => $product
+        ]);
+    }
+
     public function showProducts(){
         $products = Product::all();
         $data = [];
@@ -44,6 +52,22 @@ class ProductController extends Controller
             ]);
         }
         return $this->paginate($data, 10);
+    }
+
+    public function update(Request $request, $id){
+        $product = Product::find($id);
+        if ($product->update($request->all())){
+            return response()->json([
+                'success' => true,
+                'product' => $this->paginate(Product::all(), 10),
+                'yeah' => 'request'
+            ]);
+        }
+        return response()->json([
+            'success' => false,
+            'message' => 'Update Error'
+        ]);
+
     }
 
 
