@@ -6,6 +6,7 @@ use \App\Http\Controllers\ProductController;
 use \App\Http\Controllers\SalesItemController;
 use \App\Http\Controllers\CategoryController;
 use \App\Http\Controllers\BranchController;
+use \App\Http\Controllers\DiscountController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +38,8 @@ Route::get('transactions', [SalesItemController::class, 'show']);
 
 Route::get('categories', [CategoryController::class, 'index']);
 Route::get('branches', [BranchController::class, 'index']);
+
+Route::apiResource('discount', DiscountController::class);
 
 
 
