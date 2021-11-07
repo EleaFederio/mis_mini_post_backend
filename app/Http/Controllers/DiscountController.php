@@ -45,13 +45,21 @@ class DiscountController extends Controller
      * @param  \App\Models\Discount  $discount
      * @return \Illuminate\Http\Response
      */
-    public function show(Discount $discount)
+    public function show($discount)
     {
-        $discountObject = Discount::find($discount->id);
-        return response()->json([
-            'success' => true,
-            'discount' => $discountObject
-        ]);
+        $discountObject = Discount::find($discount);
+        if(!empty($discountObject)){
+            return response()->json([
+                'success' => true,
+                'discount' => $discountObject
+            ]);
+        }else{
+            return response()->json([
+                'success' => false,
+                'code' => 404,
+                'message' => 'Item doesn\'t exist!'
+            ]);
+        }
     }
 
     /**
@@ -61,14 +69,20 @@ class DiscountController extends Controller
      * @param  \App\Models\Discount  $discount
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, Discount $discount)
+    public function update(Request $request, $discount)
     {
-        $discountItem = Discount::findOrFail($discount->id);
-        if($discountItem){
+        $discountItem = Discount::find($discount);
+        if(!empty($discountItem)){
             $discountItem->update($request->all());
             return response()->json([
                 'success' => true,
                 'discount' => Discount::all()
+            ]);
+        }else{
+            return response()->json([
+                'success' => false,
+                'code' => 404,
+                'message' => 'Item doesn\'t exist!'
             ]);
         }
 
@@ -81,12 +95,22 @@ class DiscountController extends Controller
      * @param  \App\Models\Discount  $discount
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Discount $discount)
+    public function destroy($discount)
     {
-        $discountItem = Discount::findOrFail($discount->id);
-        if ($discountItem)
+        $discountItem = Discount::find($discount);
+        if(!empty($discountItem)){
             $discountItem->delete();
-        else response()->json(error);
-        return response()->json(null);
+            return response()->json([
+                'success' => true,
+                'message' => 'Discount successfully deleted!',
+                'discount' => Discount::all()
+            ]);
+        }else{
+            return response()->json([
+                'success' => false,
+                'code' => 404,
+                'message' => 'Item doesn\'t exist!'
+            ]);
+        }
     }
 }
