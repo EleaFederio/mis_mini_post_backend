@@ -6,6 +6,7 @@ use \App\Http\Controllers\ProductController;
 use \App\Http\Controllers\SalesItemController;
 use \App\Http\Controllers\CategoryController;
 use \App\Http\Controllers\BranchController;
+use \App\Http\Controllers\DiscountController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,10 @@ use \App\Http\Controllers\BranchController;
 //});
 
 Route::get('product', [ProductController::class, 'index']);
+Route::get('product/{id}', [ProductController::class, 'view']);
+Route::put('product/update/{id}', [ProductController::class, 'update']);
+Route::delete('product/{id}', [ProductController::class, 'delete']);
+
 Route::get('products', [ProductController::class, 'showProducts']);
 Route::get('aaa', [ProductController::class, 'aaaa']);
 Route::post('product/add', [ProductController::class, 'store']);
@@ -33,6 +38,8 @@ Route::get('transactions', [SalesItemController::class, 'show']);
 
 Route::get('categories', [CategoryController::class, 'index']);
 Route::get('branches', [BranchController::class, 'index']);
+
+Route::apiResource('discount', DiscountController::class);
 
 
 

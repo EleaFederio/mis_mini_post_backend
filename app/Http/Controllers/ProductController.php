@@ -30,6 +30,14 @@ class ProductController extends Controller
         return $this->paginate($data);
     }
 
+    public function view($id){
+        $product = Product::find($id);
+        return response()->json([
+            'success' => true,
+            'product' => $product
+        ]);
+    }
+
     public function showProducts(){
         $products = Product::all();
         $data = [];
@@ -44,6 +52,30 @@ class ProductController extends Controller
             ]);
         }
         return $this->paginate($data, 10);
+    }
+
+    public function update(Request $request, $id){
+        $product = Product::find($id);
+        if ($product->update($request->all())){
+            $products = Product::all();
+            $data = [];
+            foreach ($products as $product){
+                $product->categories;
+                array_push($data, [
+                    'id' => $product->id,
+                    'name' => $product->name,
+                    'description' => $product->description,
+                    'price' => $product->price,
+                    'category' => $product->categories->category_name
+                ]);
+            }
+            return $this->paginate($data, 10);
+        }
+        return response()->json([
+            'success' => false,
+            'message' => 'Update Error'
+        ]);
+
     }
 
 
@@ -89,6 +121,23 @@ class ProductController extends Controller
             'success' => true,
             'message' => 'Product successfully added!'
         ]);
+    }
+
+    public function delete($id){
+        Product::destroy($id);
+        $products = Product::all();
+        $data = [];
+        foreach ($products as $product){
+            $product->categories;
+            array_push($data, [
+                'id' => $product->id,
+                'name' => $product->name,
+                'description' => $product->description,
+                'price' => $product->price,
+                'category' => $product->categories->category_name
+            ]);
+        }
+        return $this->paginate($data, 10);
     }
 
     public function dataWareHouse($year){
