@@ -12,7 +12,9 @@ class Sale extends Model
         'payment',
         'total_price',
         'reference_number',
-        'change'
+        'change',
+        'discount',
+        'discountName'
     ];
 
     function salesItems(){

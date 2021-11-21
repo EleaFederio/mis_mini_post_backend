@@ -19,6 +19,8 @@ class SalesItemController extends Controller
         $totalPrice = $request->totalPrice;
         $payment = $request->payment;
         $change = $payment - $totalPrice;
+        $discount = $request->discount;
+        $discountName = $request->discountName;
         $referenceNumber = rand(00000000, 99999999);
         $products = $request->products;
 
@@ -28,7 +30,9 @@ class SalesItemController extends Controller
                 'total_price' => $totalPrice,
                 'payment' => $payment,
                 'reference_number' => $referenceNumber,
-                'change' => $change
+                'change' => $change,
+                'discount' => $discount,
+                'discountName' => $discountName
             ]);
 
             // find the last product in the Products table
@@ -90,7 +94,8 @@ class SalesItemController extends Controller
                 'payment' => $sale->payment,
                 'reference_number' => $sale->reference_number,
                 'change' => number_format((float)$sale->payment - (($sale->total_price * 0.12) + $sale->total_price), 2, '.', ''),
-                // 'created_at'  => $sale->created_at,
+                'discount'  => $sale->discount,
+                'discountName'  => $sale->discountName,
                 'created_at'  => Carbon::createFromFormat('Y-m-d H:i:s', $sale->created_at)->translatedFormat('M d, Y - h:i-A'),
                 'product' => $subData
             ]);

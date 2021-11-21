@@ -55,16 +55,16 @@ class DatabaseSeeder extends Seeder
 
         //********** Branches **********//
         DB::table('branches')->insert([
+            'branch_name' => 'Legazpi'
+        ]);
+        DB::table('branches')->insert([
             'branch_name' => 'Daraga'
         ]);
         DB::table('branches')->insert([
-            'branch_name' => 'Sorsogon'
+            'branch_name' => 'Camalig'
         ]);
         DB::table('branches')->insert([
-            'branch_name' => 'Naga'
-        ]);
-        DB::table('branches')->insert([
-            'branch_name' => 'Masbate'
+            'branch_name' => 'Guinobatan'
         ]);
     }
 }
