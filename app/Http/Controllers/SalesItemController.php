@@ -48,11 +48,6 @@ class SalesItemController extends Controller
                 ]);
             }
             $this->paginate($products, 10);
-//            return response()->json([
-//                'success' => true,
-//                'message' => 'ordered product successfully saved in database',
-//                'products' => $products
-//            ]);
         }else{
             return response()->json([
                 'success' => false,
@@ -88,12 +83,12 @@ class SalesItemController extends Controller
             array_push($data, [
                 // ********** computation of product cost ********** //
                 'sales_id' => $sale->id,
-                'total' => number_format((float)($sale->total_price * 0.12) + $sale->total_price, 2, '.', ''),
+                'total' => number_format((float) (($sale->total_price * 0.12) + $sale->total_price) - ((($sale->total_price * 0.12) + $sale->total_price) * ($sale->discount * 0.01)), 2, '.', ''),
                 'sub_total' => $sale->total_price,
                 'tax' => number_format((float)$sale->total_price * 0.12, 2, '.', ''),
                 'payment' => $sale->payment,
                 'reference_number' => $sale->reference_number,
-                'change' => number_format((float)$sale->payment - (($sale->total_price * 0.12) + $sale->total_price), 2, '.', ''),
+                'change' => number_format((float)$sale->payment - ((($sale->total_price * 0.12) + $sale->total_price) - ((($sale->total_price * 0.12) + $sale->total_price) * ($sale->discount * 0.01))) , 2, '.', ''),
                 'discount'  => $sale->discount,
                 'discountName'  => $sale->discountName,
                 'created_at'  => Carbon::createFromFormat('Y-m-d H:i:s', $sale->created_at)->translatedFormat('M d, Y - h:i-A'),

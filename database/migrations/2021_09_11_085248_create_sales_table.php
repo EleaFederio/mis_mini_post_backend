@@ -20,7 +20,7 @@ class CreateSalesTable extends Migration
             $table->string('reference_number');
             $table->decimal('change', 9, 2);
             $table->integer('discount');
-            $table->string('discountName');
+            $table->string('discountName')->nullable();
             $table->timestamps();
         });
     }
