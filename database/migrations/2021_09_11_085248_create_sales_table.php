@@ -19,6 +19,8 @@ class CreateSalesTable extends Migration
             $table->decimal('payment', 9, 2);
             $table->string('reference_number');
             $table->decimal('change', 9, 2);
+            $table->integer('discount');
+            $table->string('discountName')->nullable();
             $table->timestamps();
         });
     }

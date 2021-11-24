@@ -145,7 +145,6 @@ class ProductController extends Controller
         $branches = Branch::all();
         $mainData = [];
 
-
         foreach ($branches as $branch){
             $data = [];
 
@@ -173,8 +172,10 @@ class ProductController extends Controller
                 }
                 $data[] = $tempTransactionCount;
             }
-            array_push($mainData, $data);
+            array_push($mainData, [ 'branch' => $branch->branch_name, 'data' => $data]);
         }
+
+
 
 
         return response()->json([

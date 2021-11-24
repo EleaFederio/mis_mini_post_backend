@@ -40,7 +40,9 @@ Route::get('categories', [CategoryController::class, 'index']);
 Route::get('branches', [BranchController::class, 'index']);
 
 Route::apiResource('discount', DiscountController::class);
+Route::post('discount/upload', [DiscountController::class, 'uploadDiscount']);
 
 
 
 Route::get('/year/sale/{year}', [ProductController::class, 'dataWareHouse']);
+

@@ -35,7 +35,8 @@ class DiscountController extends Controller
         Discount::create($request->all());
         return response()->json([
             'success' => true,
-            'message' => 'Discount added!'
+            'message' => 'Discount added!',
+            'discount'  => Discount::all()
         ]);
     }
 
@@ -85,8 +86,6 @@ class DiscountController extends Controller
                 'message' => 'Item doesn\'t exist!'
             ]);
         }
-
-
     }
 
     /**
@@ -112,5 +111,20 @@ class DiscountController extends Controller
                 'message' => 'Item doesn\'t exist!'
             ]);
         }
+    }
+
+    public function uploadDiscount(Request $request){
+        $discounts = $request->all();
+        foreach ($discounts as $discount){
+//            $discount->validate([
+//                'name' => ['required', 'unique:discounts'],
+//                'percent' => ['required', 'integer']
+//            ]);
+            Discount::create($discount);
+        }
+        return response()->json([
+            'success' => true,
+            'message' => 'Discount successfully uploaded!',
+        ]);
     }
 }

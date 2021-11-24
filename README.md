@@ -13,7 +13,7 @@
 * Git
 
 ### Installation
-###### Make sure you already installed git, apache, php, composer & git before doing this
+###### Make sure you already installed git, apache, php & composer before doing this
 1. Clone the source code to your machine
 ```
 git clone https://github.com/EleaFederio/mis_mini_post_backend.git
