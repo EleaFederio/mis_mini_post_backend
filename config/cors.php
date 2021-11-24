@@ -20,7 +20,7 @@ return [
         'transaction/add',
         'product/search',
         'product/add',
-        'product',
+        'product/*',
         'sanctum/csrf-cookie'
     ],
 
