@@ -23,6 +23,9 @@ class DatabaseSeeder extends Seeder
             'category_name' => 'Bread & Bakery'
         ]);
         DB::table('categories')->insert([
+            'category_name' => 'Snacks'
+        ]);
+        DB::table('categories')->insert([
             'category_name' => 'Canned/Jarred Goods'
         ]);
         DB::table('categories')->insert([
@@ -48,6 +51,12 @@ class DatabaseSeeder extends Seeder
         ]);
         DB::table('categories')->insert([
             'category_name' => 'Personal Care'
+        ]);
+        DB::table('categories')->insert([
+            'category_name' => 'Electronics'
+        ]);
+        DB::table('categories')->insert([
+            'category_name' => 'Utensils'
         ]);
         DB::table('categories')->insert([
             'category_name' => 'Other'
