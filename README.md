@@ -1,7 +1,7 @@
 # MIS-203 Simple POS
 ###### Just a Project in MIS-203 Business Systems
 
-![DB Schema](https://raw.githubusercontent.com/EleaFederio/mis_mini_post_backend/main/MIS_POS-DB-Schema.PNG?token=AGKYLM7LIG4Z32BIEFEOT7LBRKKBC)
+![DB Schema](https://raw.githubusercontent.com/EleaFederio/mis_mini_post_backend/main/MIS_POS-DB-Schema.PNG?token=GHSAT0AAAAAABP6M3HHKETOLFYXL7X5HVHGYPCJV7Q)
 
 ### System  Requirements
 * PHP 8^
@@ -34,10 +34,10 @@ copy .env.example .env
 ```
 php artisan key:generate
 ```
-5. create a table name `barangay` in your database.
-6. in you .env file find `DB_DATABASE` and set it to "barangay". DB_TABLE need to be same as the database you create in  step 5
+5. create a table name `mis_pos` in your database.
+6. in you .env file find `DB_DATABASE` and set it to "mis_pos". DB_TABLE need to be same as the database you create in  step 5
 ```
-DB_DATABASE=barangay
+DB_DATABASE=mis_pos
 ```
 7. generate migration (Make sure your database running)
 ```
